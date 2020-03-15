@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="rt" targetName="rt" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="218d2f0e-3473-4801-ad9b-efd7476c9971" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/task1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rt.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Bitmap/Bitmap.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Bitmap/Bitmap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Light.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/MeshTriangle.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/MeshTriangle.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Object.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Object.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Sphere.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Sphere.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vectors/vectors.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vectors/vectors.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/misc/misc.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/misc/misc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zout.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zout.ppm" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Z6ql0SODeIJV3dSS23SvoyZ3Qa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="rt" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rt" TARGET_NAME="rt" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="rt" RUN_TARGET_NAME="rt">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="218d2f0e-3473-4801-ad9b-efd7476c9971" name="Default Changelist" comment="" />
+      <created>1584170038729</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584170038729</updated>
+      <workItem from="1584170040146" duration="10367000" />
+      <workItem from="1584187257458" duration="29603000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="554" y="342" width="802" height="435" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584216467738">
+      <screen x="0" y="33" width="1920" height="1047" />
+    </state>
+    <state x="554" y="342" width="802" height="435" key="#com.intellij.fileTypes.FileTypeChooser/0.33.1920.1047@0.33.1920.1047" timestamp="1584216467738" />
+    <state x="627" y="245" width="655" height="629" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584171911463">
+      <screen x="0" y="33" width="1920" height="1047" />
+    </state>
+    <state x="627" y="245" width="655" height="629" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.33.1920.1047@0.33.1920.1047" timestamp="1584171911463" />
+    <state width="1860" height="121" key="GridCell.Tab.0.bottom" timestamp="1584265789168">
+      <screen x="0" y="33" width="1920" height="1047" />
+    </state>
+    <state width="1860" height="121" key="GridCell.Tab.0.bottom/0.33.1920.1047@0.33.1920.1047" timestamp="1584265789168" />
+    <state width="1860" height="121" key="GridCell.Tab.0.center" timestamp="1584265789168">
+      <screen x="0" y="33" width="1920" height="1047" />
+    </state>
+    <state width="1860" height="121" key="GridCell.Tab.0.center/0.33.1920.1047@0.33.1920.1047" timestamp="1584265789168" />
+    <state width="1860" height="121" key="GridCell.Tab.0.left" timestamp="1584265789167">
+      <screen x="0" y="33" width="1920" height="1047" />
+    </state>
+    <state width="1860" height="121" key="GridCell.Tab.0.left/0.33.1920.1047@0.33.1920.1047" timestamp="1584265789167" />
+    <state width="1860" height="121" key="GridCell.Tab.0.right" timestamp="1584265789168">
+      <screen x="0" y="33" width="1920" height="1047" />
+    </state>
+    <state width="1860" height="121" key="GridCell.Tab.0.right/0.33.1920.1047@0.33.1920.1047" timestamp="1584265789168" />
+  </component>
+</project>

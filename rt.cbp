@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="rt"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/andrez/workspace/CG/task1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/andrez/workspace/CG/task1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rt">
+				<Option output="/home/andrez/workspace/CG/task1/rt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/andrez/workspace/CG/task1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 rt"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rt/fast">
+				<Option output="/home/andrez/workspace/CG/task1/rt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/andrez/workspace/CG/task1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 rt/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/andrez/workspace/CG/task1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/andrez/workspace/CG/task1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/andrez/workspace/CG/task1/src">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/Light.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/MeshTriangle.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/MeshTriangle.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/Object.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/Object.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/Sphere.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Objects/Sphere.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Scene.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Scene.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Vectors/vectors.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/Vectors/vectors.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/main.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/misc/misc.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/src/misc/misc.h">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/task1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
