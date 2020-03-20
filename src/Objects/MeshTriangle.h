@@ -14,21 +14,19 @@ class MeshTriangle : public Object
 {
 public:
     MeshTriangle(
-            const Vec3f *verts,
+            const Vec3 *verts,
             const uint32_t *vertsIndex,
             const uint32_t &numTris,
-            const Vec2f *st);
+            const Vec2 *st);
 
-    bool intersect(const Vec3f &orig, const Vec3f &dir, float &tnear, uint32_t &index, Vec2f &uv) const;
+    bool intersect(const Vec3 &orig, const Vec3 &dir, float &tnear, uint32_t &index, Vec2 &uv) const;
 
-    void getSurfaceProperties(const Vec3f &P, const Vec3f &I, const uint32_t &index, const Vec2f &uv, Vec3f &N, Vec2f &st) const;
+    void getSurfaceProperties(const Vec3 &P, const Vec3 &I, const uint32_t &index, const Vec2 &uv, Vec3 &N, Vec2 &st) const;
 
-    Vec3f evalDiffuseColor(const Vec2f &st) const;
-
-    std::unique_ptr<Vec3f[]> vertices;
+    std::unique_ptr<Vec3[]> vertices;
     uint32_t numTriangles;
     std::unique_ptr<uint32_t[]> vertexIndex;
-    std::unique_ptr<Vec2f[]> stCoordinates;
+
 };
 
 

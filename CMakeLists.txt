@@ -6,7 +6,14 @@ add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
 set (CMAKE_CXX_STANDARD 11)
 
-add_executable(rt src/main.cpp src/Vectors/vectors.cpp src/Vectors/vectors.h src/misc/misc.cpp src/misc/misc.h src/Objects/Object.cpp src/Objects/Object.h src/Objects/Sphere.cpp src/Objects/Sphere.h src src/Objects/MeshTriangle.cpp src/Objects/MeshTriangle.h src/Objects/Light.h src/Scene.cpp src/Scene.h)
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+endif()
+
+add_executable(rt src/main.cpp src/Vectors/vectors.cpp src/Vectors/vectors.h src/misc/misc.cpp src/misc/misc.h src/Objects/Object.cpp src/Objects/Object.h src/Objects/Sphere.cpp src/Objects/Sphere.h src src/Objects/MeshTriangle.cpp src/Objects/MeshTriangle.h src/Objects/Light.h src/Scene.cpp src/Scene.h src/Objects/Checkboard.cpp src/Objects/Checkboard.h src/Objects/Pyramid.cpp src/Objects/Pyramid.h)
 
 target_link_libraries(rt ${ALL_LIBS} )
 

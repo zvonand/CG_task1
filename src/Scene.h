@@ -12,7 +12,6 @@
 #include <fstream>
 #include <cmath>
 #include <unordered_map>
-
 #include "Vectors/vectors.h"
 #include "misc/misc.h"
 #include "Objects/Object.h"
@@ -22,6 +21,8 @@
 #include "Objects/Light.h"
 
 void scene0 (std::vector<std::unique_ptr<Object>>& objects, std::vector<std::unique_ptr<Light>>& lights);
+
+void importMesh (const char* filename, std::vector<std::unique_ptr<Object>>& objects);
 
 
 #endif //RT_SCENE_H

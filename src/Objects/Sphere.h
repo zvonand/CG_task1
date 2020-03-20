@@ -9,12 +9,12 @@
 
 class Sphere : public Object{
 public:
-    Sphere(const Vec3f &c, const float &r);
-    bool intersect(const Vec3f &orig, const Vec3f &dir, float &tnear, uint32_t &index, Vec2f &uv) const;
+    Sphere(const Vec3 &c, const float &r, MaterialType type = OPAQUE, float ior = 1.3, Vec3 color = {1, 1, 1});
+    bool intersect(const Vec3 &orig, const Vec3 &dir, float &tnear, uint32_t &index, Vec2 &uv) const;
 
-    void getSurfaceProperties(const Vec3f &P, const Vec3f &I, const uint32_t &index, const Vec2f &uv, Vec3f &N, Vec2f &st) const;
+    void getSurfaceProperties(const Vec3 &P, const Vec3 &I, const uint32_t &index, const Vec2 &uv, Vec3 &N, Vec2 &st) const;
 
-    Vec3f center;
+    Vec3 center;
     float radius, radius2;
 };
 

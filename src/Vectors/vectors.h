@@ -3,32 +3,32 @@
 #include <ostream>
 
 
-class Vec3f {
+class Vec3 {
 public:
-    Vec3f();
-    Vec3f(float xx) : x(xx), y(xx), z(xx) {}
+    Vec3();
+    Vec3(float xx) : x(xx), y(xx), z(xx) {}
 
-    Vec3f(float xx, float yy, float zz);
-    Vec3f operator * (const float &r) const { return {x * r, y * r, z * r}; }
-    Vec3f operator * (const Vec3f &v) const;
-    Vec3f operator - (const Vec3f &v) const;
-    Vec3f operator + (const Vec3f &v) const;
-    Vec3f operator - () const;
-    Vec3f& operator += (const Vec3f &v);
-    friend Vec3f operator * (const float &r, const Vec3f &v);
-    friend std::ostream & operator << (std::ostream &os, const Vec3f &v);
+    Vec3(float xx, float yy, float zz);
+    Vec3 operator * (const float &r) const { return {x * r, y * r, z * r}; }
+    Vec3 operator * (const Vec3 &v) const;
+    Vec3 operator - (const Vec3 &v) const;
+    Vec3 operator + (const Vec3 &v) const;
+    Vec3 operator - () const;
+    Vec3& operator += (const Vec3 &v);
+    friend Vec3 operator * (const float &r, const Vec3 &v);
+    friend std::ostream & operator << (std::ostream &os, const Vec3 &v);
 
     float x, y, z;
 };
 
-class Vec2f
+class Vec2
 {
 public:
-    Vec2f();
-    Vec2f(float xx);
-    Vec2f(float xx, float yy) : x(xx), y(yy) {}
-    Vec2f operator * (const float &r) const;
-    Vec2f operator + (const Vec2f &v) const;
+    Vec2();
+    Vec2(float xx);
+    Vec2(float xx, float yy) : x(xx), y(yy) {}
+    Vec2 operator * (const float &r) const;
+    Vec2 operator + (const Vec2 &v) const;
 
     float x, y;
 };

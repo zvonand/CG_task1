@@ -1,12 +1,11 @@
 #include <cstdlib>
 #include <memory>
 #include <vector>
-#include <cstdint>
 #include <fstream>
 #include <cmath>
 #include <unordered_map>
-#include <omp.h>
 #include <iostream>
+#include <omp.h>
 
 #include "Vectors/vectors.h"
 #include "misc/misc.h"
@@ -20,15 +19,15 @@ int threads = 4;
  * If no surface intersected, return false
  */
 bool trace(
-        const Vec3f &orig, const Vec3f &dir,
+        const Vec3 &orig, const Vec3 &dir,
         const std::vector<std::unique_ptr<Object>> &objects,
-        float &tNear, uint32_t &index, Vec2f &uv, Object **hitObject)
+        float &tNear, uint32_t &index, Vec2 &uv, Object **hitObject)
 {
     *hitObject = nullptr;
     for (uint32_t k = 0; k < objects.size(); ++k) {
         float tNearK = kInfinity;
         uint32_t indexK;
-        Vec2f uvK;
+        Vec2 uvK;
         if (objects[k]->intersect(orig, dir, tNearK, indexK, uvK) && tNearK < tNear) {
             *hitObject = objects[k].get();
             tNear = tNearK;
@@ -42,8 +41,8 @@ bool trace(
 
 
 
-Vec3f castRay(
-        const Vec3f &orig, const Vec3f &dir,
+Vec3 castRay(
+        const Vec3 &orig, const Vec3 &dir,
         const std::vector<std::unique_ptr<Object>> &objects,
         const std::vector<std::unique_ptr<Light>> &lights,
         const Options &options,
@@ -54,30 +53,30 @@ Vec3f castRay(
         return options.backgroundColor;
     }
 
-    Vec3f hitColor = Vec3f();//options.backgroundColor;
+    Vec3 hitColor = Vec3();//options.backgroundColor;
     float tnear = kInfinity;
-    Vec2f uv;
+    Vec2 uv;
     uint32_t index = 0;
     Object *hitObject = nullptr;
     if (trace(orig, dir, objects, tnear, index, uv, &hitObject)) {
-        Vec3f hitPoint = orig + dir * tnear;
-        Vec3f N; // normal
-        Vec2f st; // st coordinates
+        Vec3 hitPoint = orig + dir * tnear;
+        Vec3 N; // normal
+        Vec2 st; // st coordinates
         hitObject->getSurfaceProperties(hitPoint, dir, index, uv, N, st);
-        Vec3f tmp = hitPoint;
+        Vec3 tmp = hitPoint;
         switch (hitObject->materialType) {
-            case REFLECTION_AND_REFRACTION: {
-                Vec3f reflectionDirection = normalize(reflect(dir, N));
-                Vec3f refractionDirection = normalize(refract(dir, N, hitObject->ior));
-                Vec3f reflectionRayOrig = (dotProduct(reflectionDirection, N) < 0) ?
+            case GLASS: {
+                Vec3 reflectionDirection = normalize(reflect(dir, N));
+                Vec3 refractionDirection = normalize(refract(dir, N, hitObject->ior));
+                Vec3 reflectionRayOrig = (dotProduct(reflectionDirection, N) < 0) ?
                                           hitPoint - N * options.bias :
                                           hitPoint + N * options.bias;
-                Vec3f refractionRayOrig = (dotProduct(refractionDirection, N) < 0) ?
+                Vec3 refractionRayOrig = (dotProduct(refractionDirection, N) < 0) ?
                                           hitPoint - N * options.bias :
                                           hitPoint + N * options.bias;
-                Vec3f reflectionColor = castRay(reflectionRayOrig, reflectionDirection, objects, lights, options,
+                Vec3 reflectionColor = castRay(reflectionRayOrig, reflectionDirection, objects, lights, options,
                                                 depth + 1, 1);
-                Vec3f refractionColor = castRay(refractionRayOrig, refractionDirection, objects, lights, options,
+                Vec3 refractionColor = castRay(refractionRayOrig, refractionDirection, objects, lights, options,
                                                 depth + 1, 1);
                 float kr;
                 fresnel(dir, N, hitObject->ior, kr);
@@ -85,11 +84,11 @@ Vec3f castRay(
                 break;
             }
             case MIRROR: {
-                Vec3f reflectionDirection = normalize(reflect(dir, N));
-                Vec3f reflectionRayOrig = (dotProduct(reflectionDirection, N) < 0) ?
+                Vec3 reflectionDirection = normalize(reflect(dir, N));
+                Vec3 reflectionRayOrig = (dotProduct(reflectionDirection, N) < 0) ?
                                           hitPoint - N * options.bias :
                                           hitPoint + N * options.bias;
-                Vec3f reflectionColor = castRay(reflectionRayOrig, reflectionDirection, objects, lights, options,
+                Vec3 reflectionColor = castRay(reflectionRayOrig, reflectionDirection, objects, lights, options,
                                                 depth + 1, 1);
 
                 float kr;
@@ -97,34 +96,23 @@ Vec3f castRay(
                 hitColor += reflectionColor * kr;
                 break;
             }
-            case REFRACTION: {
-                Vec3f refractionDirection = normalize(refract(dir, N, hitObject->ior));
-                Vec3f refractionRayOrig = (dotProduct(refractionDirection, N) < 0) ?
-                                          hitPoint - N * options.bias :
-                                          hitPoint + N * options.bias;
-                Vec3f refractionColor = castRay(refractionRayOrig, refractionDirection, objects, lights, options,
-                                                depth + 1, 1);
-                float kr;
-                fresnel(dir, N, hitObject->ior, kr);
-                hitColor += refractionColor * (1 - kr);
-                break;
-            }
         }
-            Vec3f lightAmt = 0, specularColor = 0;
-            Vec3f shadowPointOrig = (dotProduct(dir, N) < 0) ? hitPoint + N * options.bias : hitPoint - N * options.bias;
+            Vec3 lightAmt = 0, specularColor = 0;
+            Vec3 shadowPointOrig = (dotProduct(dir, N) < 0) ? hitPoint + N * options.bias : hitPoint - N * options.bias;
             for (uint32_t i = 0; i < lights.size(); ++i) {
-                Vec3f lightDir = lights[i]->position - hitPoint;
+                Vec3 lightDir = lights[i]->position - hitPoint;
                 // square of the distance between hitPoint and the light
                 float lightDistance2 = dotProduct(lightDir, lightDir);
                 lightDir = normalize(lightDir);
                 float LdotN = std::max(0.f, dotProduct(lightDir, N));
                 Object *shadowHitObject = nullptr;
                 float tNearShadow = kInfinity;
+
                 // is the point in shadow, and is the nearest occluding object closer to the object than the light itself?
                 bool inShadow = trace(shadowPointOrig, lightDir, objects, tNearShadow, index, uv, &shadowHitObject) &&
                                 tNearShadow * tNearShadow < lightDistance2;
                 lightAmt += (1 - inShadow) * lights[i]->intensity * LdotN;
-                Vec3f reflectionDirection = reflect(-lightDir, N);
+                Vec3 reflectionDirection = reflect(-lightDir, N);
                 specularColor += powf(std::max(0.f, -dotProduct(reflectionDirection, dir)), hitObject->specularExponent) * lights[i]->intensity;
             }
             hitColor += lightAmt * hitObject->evalDiffuseColor(st) * hitObject->Kd + specularColor * hitObject->Ks;
@@ -163,11 +151,12 @@ void WriteBMP(const char* fname, Pixel* a_pixelData, int width, int height)
     out.close();
 }
 
-void SaveBMP(const char* fname, Vec3f * pixels, int w, int h)
+void SaveBMP(const char* fname, Vec3 * pixels, int w, int h)
 {
     std::vector<Pixel> pixels2(w*h/4);
-    #pragma omp parallel shared (pixels2) for num_threads(threads)
+
     int len = (w*h/4);
+    #pragma omp parallel for
     for (int i = 0; i < h/2; ++i) {
         for (int j = 0; j < w/2; ++j) {
             Pixel px;
@@ -185,23 +174,26 @@ void SaveBMP(const char* fname, Vec3f * pixels, int w, int h)
 
 
 void render (const Options &options, const std::vector<std::unique_ptr<Object>> &objects, const std::vector<std::unique_ptr<Light>> &lights) {
-    auto *framebuffer = new Vec3f[options.width * options.height];
-    Vec3f *pix = framebuffer;
+    auto *framebuffer = new Vec3[options.width * options.height];
     float scale = tan(deg2rad(options.fov * 0.5));
     float imageAspectRatio = options.width / (float)options.height;
-    Vec3f orig(0);
-    #pragma omp parallel shared (framebuffer) for num_threads(threads)
+    Vec3 orig(0);
+    std::cout << "Start render\n";
+
+    #pragma omp parallel for
     for (uint32_t j = 0; j < options.height; ++j) {
         for (uint32_t i = 0; i < options.width; ++i) {
             // generate primary ray direction
             float x = (2 * (i + 0.5) / (float)options.width - 1) * imageAspectRatio * scale;
             float y = (1 - 2 * (j + 0.5) / (float)options.height) * scale;
-            Vec3f dir = normalize(Vec3f(x, y, -1));
-            *(pix++) = castRay(orig, dir, objects, lights, options, 0);
+            Vec3 dir = normalize(Vec3(x, y, -1));
+
+            framebuffer[j*options.width + i] = castRay(orig, dir, objects, lights, options, 0);
         }
     }
+    std::cout << "Finished render\n";
 
-    //Added anti-aliasing by averaging the four neighbor rays
+    //Anti-aliasing by averaging the four neighbor rays
     SaveBMP(options.filename.c_str(), framebuffer, options.width, options.height);
     delete [] framebuffer;
 }
@@ -243,6 +235,7 @@ int main(int argc, const char **argv) {
     if (cmdLineParams.find("-threads") != cmdLineParams.end()) {
         threads = atoi(cmdLineParams["-threads"].c_str());
     }
+    omp_set_num_threads(threads);
 
     std::vector<std::unique_ptr<Object>> objects;
     std::vector<std::unique_ptr<Light>> lights;

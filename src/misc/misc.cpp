@@ -5,7 +5,7 @@
 #include "misc.h"
 #include <cmath>
 
-Vec3f normalize(const Vec3f &v) {
+Vec3 normalize(const Vec3 &v) {
     float mag2 = v.x * v.x + v.y * v.y + v.z * v.z;
     if (mag2 > 0) {
         float invMag = 1 / sqrtf(mag2);
@@ -14,11 +14,11 @@ Vec3f normalize(const Vec3f &v) {
     return v;
 }
 
-float dotProduct(const Vec3f &a, const Vec3f &b) {
+float dotProduct(const Vec3 &a, const Vec3 &b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-Vec3f crossProduct(const Vec3f &a, const Vec3f &b) {
+Vec3 crossProduct(const Vec3 &a, const Vec3 &b) {
     return {a.y * b.z - a.z * b.y,a.z * b.x - a.x * b.z,a.x * b.y - a.y * b.x};
 }
 
@@ -30,7 +30,7 @@ float deg2rad(const float &deg) {
     return deg * M_PI / 180;
 }
 
-Vec3f mix(const Vec3f &a, const Vec3f &b, const float &mixValue) {
+Vec3 mix(const Vec3 &a, const Vec3 &b, const float &mixValue) {
     return a * (1 - mixValue) + b * mixValue;
 }
 
@@ -47,14 +47,14 @@ bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, f
     return true;
 }
 
-Vec3f reflect(const Vec3f &I, const Vec3f &N) {
+Vec3 reflect(const Vec3 &I, const Vec3 &N) {
     return I - 2 * dotProduct(I, N) * N;
 }
 
-Vec3f refract(const Vec3f &I, const Vec3f &N, const float &ior) {
+Vec3 refract(const Vec3 &I, const Vec3 &N, const float &ior) {
     float cosi = clamp(-1, 1, dotProduct(I, N));
     float etai = 1, etat = ior;
-    Vec3f n = N;
+    Vec3 n = N;
     if (cosi < 0) { cosi = -cosi; } else { std::swap(etai, etat); n= -N; }
     float eta = etai / etat;
     float k = 1 - eta * eta * (1 - cosi * cosi);
@@ -66,26 +66,26 @@ Options setOptions(std::string filename, uint32_t width, uint32_t height) {
     options.width = width*2;
     options.height = height*2;
     options.fov = 90;
-    options.backgroundColor = Vec3f(0.1, 0.1, 0.1);
+    options.backgroundColor = Vec3(0.1, 0.1, 0.1);
     options.maxDepth = 4;  //maximum recursion depth
     options.bias = 0.0001;
     options.filename = filename;
     return options;
 }
 
-bool rayTriangleIntersect(const Vec3f &v0, const Vec3f &v1, const Vec3f &v2, const Vec3f &orig, const Vec3f &dir,
+bool rayTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &orig, const Vec3 &dir,
                           float &tnear, float &u, float &v) {
-    Vec3f edge1 = v1 - v0;
-    Vec3f edge2 = v2 - v0;
-    Vec3f pvec = crossProduct(dir, edge2);
+    Vec3 edge1 = v1 - v0;
+    Vec3 edge2 = v2 - v0;
+    Vec3 pvec = crossProduct(dir, edge2);
     float det = dotProduct(edge1, pvec);
     if (det == 0 || det < 0) return false;
 
-    Vec3f tvec = orig - v0;
+    Vec3 tvec = orig - v0;
     u = dotProduct(tvec, pvec);
     if (u < 0 || u > det) return false;
 
-    Vec3f qvec = crossProduct(tvec, edge1);
+    Vec3 qvec = crossProduct(tvec, edge1);
     v = dotProduct(dir, qvec);
     if (v < 0 || u + v > det) return false;
 
@@ -98,7 +98,7 @@ bool rayTriangleIntersect(const Vec3f &v0, const Vec3f &v1, const Vec3f &v2, con
     return true;
 }
 
-void fresnel(const Vec3f &I, const Vec3f &N, const float &ior, float &kr) {
+void fresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr) {
     float cosi = clamp(-1, 1, dotProduct(I, N));
     float etai = 1, etat = ior;
     if (cosi > 0) {  std::swap(etai, etat); }

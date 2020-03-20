@@ -8,6 +8,6 @@
 
 Object::Object() : materialType(OPAQUE), ior(1.5), Kd(0.8), Ks(0.2), diffuseColor(0.2), specularExponent(25) {}
 
-Vec3f Object::evalDiffuseColor(const Vec2f &) const {
+Vec3 Object::evalDiffuseColor(const Vec2 &) const {
     return diffuseColor;
 }
