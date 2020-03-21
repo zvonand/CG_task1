@@ -98,7 +98,7 @@ bool rayTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const 
     return true;
 }
 
-void fresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr) {
+void applyFresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr) {
     float cosi = clamp(-1, 1, dotProduct(I, N));
     float etai = 1, etat = ior;
     if (cosi > 0) {  std::swap(etai, etat); }

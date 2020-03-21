@@ -26,6 +26,7 @@ public:
     std::unique_ptr<Vec3[]> vertices;
     uint32_t numTriangles;
     std::unique_ptr<uint32_t[]> vertexIndex;
+    std::unique_ptr<Vec2[]> stCoordinates;
 
 };
 

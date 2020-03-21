@@ -12,32 +12,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="218d2f0e-3473-4801-ad9b-efd7476c9971" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Mesh/Teapot.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Checkboard.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Checkboard.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Pyramid.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Pyramid.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rt" beforeDir="false" afterPath="$PROJECT_DIR$/rt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rt.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/rt.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Light.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Light.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Checkboard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Checkboard.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Checkboard.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Checkboard.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/MeshTriangle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/MeshTriangle.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/MeshTriangle.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/MeshTriangle.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Object.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Object.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Sphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Sphere.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Sphere.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Pyramid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Pyramid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Pyramid.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Pyramid.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vectors/vectors.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vectors/vectors.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vectors/vectors.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vectors/vectors.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/misc/misc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/misc.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/misc/misc.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/misc.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zout.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/zout.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zout.ppm" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +81,7 @@
       <workItem from="1584354742848" duration="3104000" />
       <workItem from="1584524388390" duration="61000" />
       <workItem from="1584524472108" duration="23770000" />
+      <workItem from="1584783069115" duration="3014000" />
     </task>
     <servers />
   </component>
@@ -109,22 +97,22 @@
       <screen x="0" y="33" width="1920" height="1047" />
     </state>
     <state x="627" y="245" width="655" height="629" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.33.1920.1047@0.33.1920.1047" timestamp="1584171911463" />
-    <state width="1860" height="121" key="GridCell.Tab.0.bottom" timestamp="1584689173610">
+    <state width="1860" height="121" key="GridCell.Tab.0.bottom" timestamp="1584786155288">
       <screen x="0" y="33" width="1920" height="1047" />
     </state>
-    <state width="1860" height="121" key="GridCell.Tab.0.bottom/0.33.1920.1047@0.33.1920.1047" timestamp="1584689173610" />
-    <state width="1860" height="121" key="GridCell.Tab.0.center" timestamp="1584689173609">
+    <state width="1860" height="121" key="GridCell.Tab.0.bottom/0.33.1920.1047@0.33.1920.1047" timestamp="1584786155288" />
+    <state width="1860" height="121" key="GridCell.Tab.0.center" timestamp="1584786155288">
       <screen x="0" y="33" width="1920" height="1047" />
     </state>
-    <state width="1860" height="121" key="GridCell.Tab.0.center/0.33.1920.1047@0.33.1920.1047" timestamp="1584689173609" />
-    <state width="1860" height="121" key="GridCell.Tab.0.left" timestamp="1584689173609">
+    <state width="1860" height="121" key="GridCell.Tab.0.center/0.33.1920.1047@0.33.1920.1047" timestamp="1584786155288" />
+    <state width="1860" height="121" key="GridCell.Tab.0.left" timestamp="1584786155287">
       <screen x="0" y="33" width="1920" height="1047" />
     </state>
-    <state width="1860" height="121" key="GridCell.Tab.0.left/0.33.1920.1047@0.33.1920.1047" timestamp="1584689173609" />
-    <state width="1860" height="121" key="GridCell.Tab.0.right" timestamp="1584689173610">
+    <state width="1860" height="121" key="GridCell.Tab.0.left/0.33.1920.1047@0.33.1920.1047" timestamp="1584786155287" />
+    <state width="1860" height="121" key="GridCell.Tab.0.right" timestamp="1584786155288">
       <screen x="0" y="33" width="1920" height="1047" />
     </state>
-    <state width="1860" height="121" key="GridCell.Tab.0.right/0.33.1920.1047@0.33.1920.1047" timestamp="1584689173610" />
+    <state width="1860" height="121" key="GridCell.Tab.0.right/0.33.1920.1047@0.33.1920.1047" timestamp="1584786155288" />
     <state x="318" y="104" width="1284" height="912" key="SettingsEditor" timestamp="1584645533004">
       <screen x="0" y="33" width="1920" height="1047" />
     </state>

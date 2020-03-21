@@ -79,7 +79,7 @@ Vec3 castRay(
                 Vec3 refractionColor = castRay(refractionRayOrig, refractionDirection, objects, lights, options,
                                                 depth + 1, 1);
                 float kr;
-                fresnel(dir, N, hitObject->ior, kr);
+                applyFresnel(dir, N, hitObject->ior, kr);
                 hitColor += reflectionColor * kr + refractionColor * (1 - kr);
                 break;
             }
@@ -92,7 +92,7 @@ Vec3 castRay(
                                                 depth + 1, 1);
 
                 float kr;
-                fresnel(dir, N, hitObject->ior, kr);
+                applyFresnel(dir, N, hitObject->ior, kr);
                 hitColor += reflectionColor * kr;
                 break;
             }
@@ -115,6 +115,7 @@ Vec3 castRay(
                 Vec3 reflectionDirection = reflect(-lightDir, N);
                 specularColor += powf(std::max(0.f, -dotProduct(reflectionDirection, dir)), hitObject->specularExponent) * lights[i]->intensity;
             }
+
             hitColor += lightAmt * hitObject->evalDiffuseColor(st) * hitObject->Kd + specularColor * hitObject->Ks;
 
     }

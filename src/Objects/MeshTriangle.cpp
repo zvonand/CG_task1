@@ -14,6 +14,8 @@ MeshTriangle::MeshTriangle(const Vec3 *verts, const uint32_t *vertsIndex, const 
     vertexIndex = std::unique_ptr<uint32_t[]>(new uint32_t[numTris * 3]);
     memcpy(vertexIndex.get(), vertsIndex, sizeof(uint32_t) * numTris * 3);
     numTriangles = numTris;
+    stCoordinates = std::unique_ptr<Vec2[]>(new Vec2[maxIndex]);
+    memcpy(stCoordinates.get(), st, sizeof(Vec2) * maxIndex);
 
 }
 
@@ -45,6 +47,10 @@ MeshTriangle::getSurfaceProperties(const Vec3 &P, const Vec3 &I, const uint32_t 
     Vec3 e0 = normalize(v1 - v0);
     Vec3 e1 = normalize(v2 - v1);
     N = normalize(crossProduct(e0, e1));
+    const Vec2 &st0 = stCoordinates[vertexIndex[index * 3]];
+    const Vec2 &st1 = stCoordinates[vertexIndex[index * 3 + 1]];
+    const Vec2 &st2 = stCoordinates[vertexIndex[index * 3 + 2]];
+    st = st0 * (1 - uv.x - uv.y) + st1 * uv.x + st2 * uv.y;
 }
 
 

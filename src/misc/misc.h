@@ -17,7 +17,7 @@ const uint32_t BLUE = 0x00FF0000;
 const float kInfinity = std::numeric_limits<float>::max();
 enum MaterialType { OPAQUE, MIRROR, GLASS};
 
-struct Pixel { unsigned char r, g, b; };
+struct Pixel { unsigned char b, g, r; };
 
 struct Options {
     uint32_t width;
@@ -54,7 +54,7 @@ bool rayTriangleIntersect(
         const Vec3 &orig, const Vec3 &dir,
         float &tnear, float &u, float &v);
 
-void fresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr);  //Fresnel equations
+void applyFresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr);  //Fresnel equations
 
 
 #endif

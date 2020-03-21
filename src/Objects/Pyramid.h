@@ -11,7 +11,8 @@
 
 
 class Pyramid : public MeshTriangle {
-    Pyramid(const Vec3 *verts, const uint32_t *vertsIndex, const uint32_t &numTris, const Vec2 *st);
+public:
+    Pyramid(const Vec3 *verts);
 };
 
 

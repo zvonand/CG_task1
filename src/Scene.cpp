@@ -4,6 +4,7 @@
 
 #include "Scene.h"
 #include "Objects/Checkboard.h"
+#include "Objects/Pyramid.h"
 #include <fstream>
 #include <iostream>
 
@@ -23,11 +24,13 @@ void scene0(std::vector<std::unique_ptr<Object>> &objects, std::vector<std::uniq
 
     auto *sph4 = new Sphere(Vec3(0, -0.7, -3.4), 0.5, GLASS, 1.5, Vec3(0.45, 0.12, 0.87));
     objects.push_back(std::unique_ptr<Sphere>(sph4));
-
-    auto *sph5 = new Sphere(Vec3(2.6, -0.4, -3), 0.37, GLASS, 1.5, Vec3(1, 0.2, 0.15));
+    //BGR scheme
+    auto *sph5 = new Sphere(Vec3(2.6, -0.4, -5), 0.37, GLASS, 1.5, Vec3(0, 0, 1));
     objects.push_back(std::unique_ptr<Sphere>(sph5));
 
-    //importMesh("src/Mesh/Teapot.obj", objects);
+    Vec3 pyr[4] = {{0, 0, -4}, {1, 0, -4}, {0, 0, -5}, {1, 3, -2}};
+    auto *pyr1 = new Pyramid (pyr);
+    objects.push_back(std::unique_ptr<Pyramid>(pyr1));
 
     lights.push_back(std::unique_ptr<Light>(new Light(Vec3(10, 20, 10), 0.7)));
     lights.push_back(std::unique_ptr<Light>(new Light(Vec3(-5, 15, 8), 0.56)));
