@@ -12,15 +12,19 @@ class Object {
 public:
     Object();
     virtual ~Object() {}
-    virtual bool intersect(const Vec3 &, const Vec3 &, float &, uint32_t &, Vec2 &) const = 0;
-    virtual void getSurfaceProperties(const Vec3 &, const Vec3 &, const uint32_t &, const Vec2 &, Vec3 &, Vec2 &) const = 0;
-    virtual Vec3 evalDiffuseColor(const Vec2 &) const;
 
-    // material properties
+    //check if ray intersects given object; to be implemented in children
+    virtual bool intersect(const vec3 &, const vec3 &, float &, uint32_t &, Vec2 &) const = 0;
+    //get color properties
+    virtual vec3 evalDiffuseColor(const Vec2 &) const;
+
+    //properties, such as N (normal)
+    virtual void getSurfaceProperties(const vec3 &, const vec3 &, const uint32_t &, const Vec2 &, vec3 &, Vec2 &) const = 0;
+
     MaterialType materialType;
     float ior;
     float Kd, Ks;
-    Vec3 diffuseColor;
+    vec3 diffuseColor;
     float specularExponent;
 };
 

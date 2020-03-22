@@ -1,29 +1,33 @@
 #include "vectors.h"
 
-Vec3::Vec3() : x(0), y(0), z(0) {}
-Vec3::Vec3(float xx, float yy, float zz) : x(xx), y(yy), z(zz) {}
+vec3::vec3() : x(0), y(0), z(0) {}
+vec3::vec3(float xx, float yy, float zz) : x(xx), y(yy), z(zz) {}
 
-Vec3 Vec3::operator*(const Vec3 &v) const {
+vec3 vec3::operator*(const vec3 &v) const {
     return {x * v.x, y * v.y, z * v.z};
 }
-Vec3 Vec3::operator-(const Vec3 &v) const {
+vec3 vec3::operator-(const vec3 &v) const {
     return {x - v.x, y - v.y, z - v.z};
 }
-Vec3 Vec3::operator+(const Vec3 &v) const {
+vec3 vec3::operator+(const vec3 &v) const {
     return {x + v.x, y + v.y, z + v.z};
 }
-Vec3 Vec3::operator-() const {
-    return Vec3(-x, -y, -z);
+vec3 vec3::operator-() const {
+    return vec3(-x, -y, -z);
 }
-Vec3& Vec3::operator+=(const Vec3 &v) {
+vec3& vec3::operator+=(const vec3 &v) {
     x += v.x, y += v.y, z += v.z;
     return *this;
 }
-Vec3 operator*(const float &r, const Vec3 &v) {
+vec3 operator*(const float &r, const vec3 &v) {
     return {v.x * r, v.y * r, v.z * r};
 }
-std::ostream &operator<<(std::ostream &os, const Vec3 &v) {
+std::ostream &operator<<(std::ostream &os, const vec3 &v) {
     return os << v.x << ", " << v.y << ", " << v.z;
+}
+
+float vec3::dotProduct(const vec3 &v) {
+    return x * v.x + y * v.y + z * v.z;
 }
 
 

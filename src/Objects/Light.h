@@ -8,9 +8,9 @@
 
 class Light {
 public:
-    Light(const Vec3 &pos, const Vec3 &intst) : position(pos), intensity(intst) {}
-    Vec3 position;
-    Vec3 intensity;
+    Light(const vec3 &pos, const vec3 &intst) : position(pos), intensity(intst) {}
+    vec3 position;
+    vec3 intensity;
 };
 
 

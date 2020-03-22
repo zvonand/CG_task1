@@ -10,8 +10,8 @@
 
 class Checkboard : public MeshTriangle{
 public:
-    Checkboard(const Vec3 *verts);
-    Vec3 evalDiffuseColor(const Vec2 &st) const;
+    Checkboard(const vec3 *verts);
+    vec3 evalDiffuseColor(const Vec2 &st) const;
 };
 
 

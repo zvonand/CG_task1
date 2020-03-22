@@ -4,21 +4,24 @@
 
 #include "misc.h"
 #include <cmath>
+#include <utility>
 
-Vec3 normalize(const Vec3 &v) {
-    float mag2 = v.x * v.x + v.y * v.y + v.z * v.z;
-    if (mag2 > 0) {
-        float invMag = 1 / sqrtf(mag2);
-        return {v.x * invMag, v.y * invMag, v.z * invMag};
+//TODO: maybe migrate to doubles
+
+vec3 toUnitVector (const vec3 &v) {
+    float nd = v.x * v.x + v.y * v.y + v.z * v.z;
+    if (nd > 0) {
+        float invLen = 1 / sqrtf(nd);
+        return {v.x * invLen, v.y * invLen, v.z * invLen};
     }
     return v;
 }
 
-float dotProduct(const Vec3 &a, const Vec3 &b) {
+float scalarProduct(const vec3 &a, const vec3 &b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-Vec3 crossProduct(const Vec3 &a, const Vec3 &b) {
+vec3 crossProduct(const vec3 &a, const vec3 &b) {
     return {a.y * b.z - a.z * b.y,a.z * b.x - a.x * b.z,a.x * b.y - a.y * b.x};
 }
 
@@ -30,10 +33,15 @@ float deg2rad(const float &deg) {
     return deg * M_PI / 180;
 }
 
-Vec3 mix(const Vec3 &a, const Vec3 &b, const float &mixValue) {
-    return a * (1 - mixValue) + b * mixValue;
+float rad2deg(const float &rad) {
+    return rad * 180 /M_PI;
 }
 
+vec3 mix(const vec3 &pa, const vec3 &pb, const float &mixValue) {//for checkboard coloring
+    return pa * (1 - mixValue) + pb * mixValue;
+}
+
+//solve quadratic equation with discriminant
 bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, float &x1) {
     float discr = b * b - 4 * a * c;
     if (discr < 0) return false;
@@ -47,15 +55,21 @@ bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, f
     return true;
 }
 
-Vec3 reflect(const Vec3 &I, const Vec3 &N) {
-    return I - 2 * dotProduct(I, N) * N;
+vec3 reflect(const vec3 &I, const vec3 &N) {    //reflected dir
+    return I - 2 * scalarProduct(I, N) * N;
 }
 
-Vec3 refract(const Vec3 &I, const Vec3 &N, const float &ior) {
-    float cosi = clamp(-1, 1, dotProduct(I, N));
+vec3 refract(const vec3 &I, const vec3 &N, const float &ior) {  //refracted dir
+    float cosi = clamp(-1, 1, scalarProduct(I, N));
     float etai = 1, etat = ior;
-    Vec3 n = N;
-    if (cosi < 0) { cosi = -cosi; } else { std::swap(etai, etat); n= -N; }
+    vec3 n = N; //incoming nm
+
+    if (cosi >= 0) {    //inverting factors
+        std::swap(etai, etat);
+        n= -N;
+    } else {
+        cosi = std::abs(cosi);
+    }
     float eta = etai / etat;
     float k = 1 - eta * eta * (1 - cosi * cosi);
     return k < 0 ? 0 : eta * I + (eta * cosi - sqrtf(k)) * n;
@@ -63,43 +77,43 @@ Vec3 refract(const Vec3 &I, const Vec3 &N, const float &ior) {
 
 Options setOptions(std::string filename, uint32_t width, uint32_t height) {
     Options options;
-    options.width = width*2;
+    options.width = width*2;    //x2 for antialiasing
     options.height = height*2;
-    options.fov = 90;
-    options.backgroundColor = Vec3(0.1, 0.1, 0.1);
-    options.maxDepth = 4;  //maximum recursion depth
-    options.bias = 0.0001;
-    options.filename = filename;
+    options.viewField = 70;
+    options.backColor = vec3(0.3, 0.1, 0.1);
+    options.maxDepth = 6;  //recursion
+    options.bias = 0.001;  //slight, small value
+    options.filename = std::move(filename);
     return options;
 }
 
-bool rayTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &orig, const Vec3 &dir,
+bool rayTriangleIntersect(const vec3 &v0, const vec3 &v1, const vec3 &v2, const vec3 &orig, const vec3 &dir,
                           float &tnear, float &u, float &v) {
-    Vec3 edge1 = v1 - v0;
-    Vec3 edge2 = v2 - v0;
-    Vec3 pvec = crossProduct(dir, edge2);
-    float det = dotProduct(edge1, pvec);
+    vec3 edge1 = v1 - v0;
+    vec3 edge2 = v2 - v0;
+    vec3 pvec = crossProduct(dir, edge2);
+    float det = scalarProduct(edge1, pvec);
     if (det == 0 || det < 0) return false;
 
-    Vec3 tvec = orig - v0;
-    u = dotProduct(tvec, pvec);
+    vec3 tvec = orig - v0;
+    u = scalarProduct(tvec, pvec);
     if (u < 0 || u > det) return false;
 
-    Vec3 qvec = crossProduct(tvec, edge1);
-    v = dotProduct(dir, qvec);
+    vec3 qvec = crossProduct(tvec, edge1);
+    v = scalarProduct(dir, qvec);
     if (v < 0 || u + v > det) return false;
 
     float invDet = 1 / det;
 
-    tnear = dotProduct(edge2, qvec) * invDet;
+    tnear = scalarProduct(edge2, qvec) * invDet;
     u *= invDet;
     v *= invDet;
 
     return true;
 }
 
-void applyFresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr) {
-    float cosi = clamp(-1, 1, dotProduct(I, N));
+void applyFresnel(const vec3 &I, const vec3 &N, const float &ior, float &kr) {
+    float cosi = clamp(-1, 1, scalarProduct(I, N));
     float etai = 1, etat = ior;
     if (cosi > 0) {  std::swap(etai, etat); }
     // sini computation with Snell's law
@@ -117,3 +131,4 @@ void applyFresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr) {
     //Due to energy conservation law, the formula is as given:
     // kt = 1 - kr;
 }
+

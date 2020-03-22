@@ -5,17 +5,17 @@
 #ifndef RT_SPHERE_H
 #define RT_SPHERE_H
 
+#define GLASS_IOR 1.45
 #include "Object.h"
 
 class Sphere : public Object{
 public:
-    Sphere(const Vec3 &c, const float &r, MaterialType type = OPAQUE, float ior = 1.3, Vec3 color = {1, 1, 1});
-    bool intersect(const Vec3 &orig, const Vec3 &dir, float &tnear, uint32_t &index, Vec2 &uv) const;
+    Sphere(const vec3 &c, const float &r, MaterialType type = OPAQUE, vec3 color = {1, 1, 1}, float ior = GLASS_IOR);
+    bool intersect(const vec3 &orig, const vec3 &dir, float &tnear, uint32_t &index, Vec2 &uv) const;
+    void getSurfaceProperties(const vec3 &P, const vec3 &I, const uint32_t &index, const Vec2 &uv, vec3 &N, Vec2 &st) const;
 
-    void getSurfaceProperties(const Vec3 &P, const Vec3 &I, const uint32_t &index, const Vec2 &uv, Vec3 &N, Vec2 &st) const;
-
-    Vec3 center;
-    float radius, radius2;
+    vec3 centre;
+    float radius, sqrdRadius;
 };
 
 

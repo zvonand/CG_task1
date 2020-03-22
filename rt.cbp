@@ -110,12 +110,6 @@
 		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/Objects/Object.h">
 			<Option target="rt"/>
 		</Unit>
-		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/Objects/Pyramid.cpp">
-			<Option target="rt"/>
-		</Unit>
-		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/Objects/Pyramid.h">
-			<Option target="rt"/>
-		</Unit>
 		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/Objects/Sphere.cpp">
 			<Option target="rt"/>
 		</Unit>
@@ -135,6 +129,9 @@
 			<Option target="rt"/>
 		</Unit>
 		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/main.cpp">
+			<Option target="rt"/>
+		</Unit>
+		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/misc/Image.h">
 			<Option target="rt"/>
 		</Unit>
 		<Unit filename="/home/andrez/workspace/CG/CG_task1/src/misc/misc.cpp">

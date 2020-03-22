@@ -4,37 +4,49 @@
 
 #include "Scene.h"
 #include "Objects/Checkboard.h"
-#include "Objects/Pyramid.h"
-#include <fstream>
-#include <iostream>
+#include "misc/misc.h"
+#include "misc/Image.h"
 
-void scene0(std::vector<std::unique_ptr<Object>> &objects, std::vector<std::unique_ptr<Light>> &lights) {
-    Vec3 verts[4] = {{-50, -2.5, 0}, {50, -2.5, 0}, {50, -1, -50}, {-50, -1, -50}};
+
+
+void scene1 (Options options) {
+    std::vector<std::unique_ptr<Object>> objects;
+    std::vector<std::unique_ptr<Light>> lights;
+
+    vec3 verts[4] = {{-50, -1.5, 0}, {50, -1.5, 0}, {50, 0, -50}, {-50, 0, -50}};
     auto *surface = new Checkboard(verts);
     objects.push_back(std::unique_ptr<MeshTriangle>(surface));
 
-    auto *sph1 = new Sphere(Vec3(-1, 1, -4), 0.8, GLASS, 1.5, Vec3(0.6, 0.5, 0.56));
-    objects.push_back(std::unique_ptr<Sphere>(sph1));
+    //TODO: swap parameters so one can omit unnecessary ones
+    auto *sph_1 = new Sphere(vec3(-1, 1, -5), 0.8, OPAQUE, vec3(0.6, 0.5, 0.56));
+    objects.push_back(std::unique_ptr<Sphere>(sph_1));
 
-    auto *sph2 = new Sphere(Vec3(0.4, -0.5, -2), 0.5, MIRROR, 1.3, Vec3(1, 0.5, 0));
-    objects.push_back(std::unique_ptr<Sphere>(sph2));
+    auto *sph_2 = new Sphere(vec3(0.4, -0.1, -3), 0.5, GLASS, vec3(0, 0, 0));
+    objects.push_back(std::unique_ptr<Sphere>(sph_2));
 
-    auto *sph3 = new Sphere(Vec3(-2, -0.8, -3), 0.65, MIRROR, 1.5, Vec3(0, 0.7, 0.2));
-    objects.push_back(std::unique_ptr<Sphere>(sph3));
+    auto *sph_3 = new Sphere(vec3(-2, -0.8, -4), 0.65, MIRROR, vec3(0, 0.7, 0.2));
+    objects.push_back(std::unique_ptr<Sphere>(sph_3));
 
-    auto *sph4 = new Sphere(Vec3(0, -0.7, -3.4), 0.5, GLASS, 1.5, Vec3(0.45, 0.12, 0.87));
-    objects.push_back(std::unique_ptr<Sphere>(sph4));
-    //BGR scheme
-    auto *sph5 = new Sphere(Vec3(2.6, -0.4, -5), 0.37, GLASS, 1.5, Vec3(0, 0, 1));
-    objects.push_back(std::unique_ptr<Sphere>(sph5));
+    auto *sph_4 = new Sphere(vec3(0, -0.7, -4.4), 0.5, MIRROR, vec3(0.45, 0.12, 0.87));
+    objects.push_back(std::unique_ptr<Sphere>(sph_4));
 
-    Vec3 pyr[4] = {{0, 0, -4}, {1, 0, -4}, {0, 0, -5}, {1, 3, -2}};
-    auto *pyr1 = new Pyramid (pyr);
-    objects.push_back(std::unique_ptr<Pyramid>(pyr1));
+    auto *sph_5 = new Sphere(vec3(2.6, -0.4, -3.67), 0.37, GLASS, vec3(1, 0, 0.75));
+    objects.push_back(std::unique_ptr<Sphere>(sph_5));
 
-    lights.push_back(std::unique_ptr<Light>(new Light(Vec3(10, 20, 10), 0.7)));
-    lights.push_back(std::unique_ptr<Light>(new Light(Vec3(-5, 15, 8), 0.56)));
-    lights.push_back(std::unique_ptr<Light>(new Light(Vec3(-10, 17, 4), 0.4)));
+    auto *sph_6 = new Sphere(vec3(1, 0, -2), 0.2, MIRROR, vec3(0.8, 0.2, 0));
+    objects.push_back(std::unique_ptr<Sphere>(sph_6));
+
+    auto *sph_7 = new Sphere(vec3(1.4, 0, -4.6), 0.41, GLASS, vec3(0.6, 0.41, 0.6));
+    objects.push_back(std::unique_ptr<Sphere>(sph_7));
+
+    auto *sph_8 = new Sphere(vec3(0.21, -0.8, -3), 0.3, GLASS, vec3(0.6, 0.6, 0.4));
+    objects.push_back(std::unique_ptr<Sphere>(sph_8));
+
+    lights.push_back(std::unique_ptr<Light>(new Light(vec3(15, 20, 10), 0.9)));
+    //lights.push_back(std::unique_ptr<Light>(new Light(vec3(-15, 15, 8), 0.1)));
+    lights.push_back(std::unique_ptr<Light>(new Light(vec3(-10, 10, 6), 0.8)));
+
+    render(options, objects, lights);
 }
 
 void importMesh(const char* filename, std::vector<std::unique_ptr<Object>> &objects) {
@@ -46,7 +58,7 @@ void importMesh(const char* filename, std::vector<std::unique_ptr<Object>> &obje
     int verts, faces;
     fin >> verts >> faces;
 
-    Vec3 * verticesVector = new Vec3[verts];
+    vec3 * verticesVector = new vec3[verts];
     uint32_t * facesOrder = new uint32_t [faces*3];
 
     char type;
@@ -54,7 +66,7 @@ void importMesh(const char* filename, std::vector<std::unique_ptr<Object>> &obje
         float a, b, c;
         fin >> type;
         fin >> a >> b >> c;
-        verticesVector[i] = Vec3(a, b, c - 10);
+        verticesVector[i] = vec3(a, b, c - 10);
     }
     for (int i = 0; i < faces; ++i) {
         uint32_t a, b, c;

@@ -3,20 +3,23 @@
 #include <ostream>
 
 
-class Vec3 {
+class vec3 {
 public:
-    Vec3();
-    Vec3(float xx) : x(xx), y(xx), z(xx) {}
+    vec3();
+    vec3(float xx) : x(xx), y(xx), z(xx) {}
 
-    Vec3(float xx, float yy, float zz);
-    Vec3 operator * (const float &r) const { return {x * r, y * r, z * r}; }
-    Vec3 operator * (const Vec3 &v) const;
-    Vec3 operator - (const Vec3 &v) const;
-    Vec3 operator + (const Vec3 &v) const;
-    Vec3 operator - () const;
-    Vec3& operator += (const Vec3 &v);
-    friend Vec3 operator * (const float &r, const Vec3 &v);
-    friend std::ostream & operator << (std::ostream &os, const Vec3 &v);
+    vec3(float xx, float yy, float zz);
+    vec3 operator * (const float &r) const { return {x * r, y * r, z * r}; }
+    vec3 operator * (const vec3 &v) const;
+    vec3 operator - (const vec3 &v) const;
+    vec3 operator + (const vec3 &v) const;
+    vec3 operator - () const;
+    vec3& operator += (const vec3 &v);
+    float dotProduct(const vec3 &v);
+
+    friend vec3 operator * (const float &r, const vec3 &v);
+    friend std::ostream & operator << (std::ostream &os, const vec3 &v);
+
 
     float x, y, z;
 };

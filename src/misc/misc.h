@@ -8,53 +8,56 @@
 #include <limits>
 #include <string>
 #include <cmath>
+#include <vector>
+#include <iostream>
+
 #include "../Vectors/vectors.h"
 
-const uint32_t RED = 0x000000FF;
-const uint32_t GREEN = 0x0000FF00;
-const uint32_t BLUE = 0x00FF0000;
-
-const float kInfinity = std::numeric_limits<float>::max();
+const float infty = std::numeric_limits<float>::max();
 enum MaterialType { OPAQUE, MIRROR, GLASS};
 
-struct Pixel { unsigned char b, g, r; };
+struct Pixel {
+    unsigned char b=0, g=0, r=0;
+};
 
 struct Options {
     uint32_t width;
     uint32_t height;
-    float fov;
+    float viewField;
     uint8_t maxDepth;
-    Vec3 backgroundColor;
+    vec3 backColor;
     float bias;
     std::string filename;
 };
 
-Vec3 normalize(const Vec3 &v);
+vec3 toUnitVector(const vec3 &v);
 
-float dotProduct(const Vec3 &a, const Vec3 &b);
+float scalarProduct(const vec3 &a, const vec3 &b);
 
-Vec3 crossProduct(const Vec3 &a, const Vec3 &b);
+vec3 crossProduct(const vec3 &a, const vec3 &b);
 
 float clamp(const float &lo, const float &hi, const float &v);
 
 float deg2rad(const float &deg);
 
-Vec3 mix(const Vec3 &a, const Vec3& b, const float &mixValue);
+vec3 mix(const vec3 &a, const vec3& b, const float &mixValue);
 
 bool solveQuadratic(const float &a, const float &b, const float &c, float &x0, float &x1);
 
-Vec3 reflect(const Vec3 &I, const Vec3 &N);
+vec3 reflect(const vec3 &I, const vec3 &N);
 
-Vec3 refract(const Vec3 &I, const Vec3 &N, const float &ior);
+vec3 refract(const vec3 &I, const vec3 &N, const float &ior);
 
-Options setOptions(std::string filename, uint32_t width = 1280, uint32_t height = 720);
+Options setOptions(std::string filename, uint32_t width = 1024, uint32_t height = 780);
 
 bool rayTriangleIntersect(
-        const Vec3 &v0, const Vec3 &v1, const Vec3 &v2,
-        const Vec3 &orig, const Vec3 &dir,
+        const vec3 &v0, const vec3 &v1, const vec3 &v2,
+        const vec3 &orig, const vec3 &dir,
         float &tnear, float &u, float &v);
 
-void applyFresnel(const Vec3 &I, const Vec3 &N, const float &ior, float &kr);  //Fresnel equations
+void applyFresnel(const vec3 &I, const vec3 &N, const float &ior, float &kr);  //Fresnel equations
+
+
 
 
 #endif
