@@ -1,5 +1,5 @@
 //
-// Created by andrez on 22.03.2020.
+// Created by andrez on 20.03.2020.
 //
 
 #ifndef RT_IMAGE_H
@@ -44,13 +44,13 @@ vec3 castRay (const vec3 &orig, const vec3 &dir, const std::vector<std::unique_p
     uint32_t index = 0;
     Object *obj = NULL;
     if (trace(orig, dir, objects, tnear, index, uv, &obj)) {    //get hitten object, whose properties will be computed later
-        vec3 hitPoint = orig + dir * tnear; //tnear == sort of proximity
+        vec3 hitPoint = orig + dir * tnear; //tnear == proximity
         vec3 N;
         Vec2 st;
         obj->getSurfaceProperties(hitPoint, dir, index, uv, N, st);
 
         //add basic opaqueness to every figure regardless of its material to make reflections look better and to apply correct lighting model
-        vec3 lightAmt = 0, specularColor = 0;
+        vec3 lightTnsty = 0, specularColor = 0;
         vec3 shadowPointOrigin = (scalarProduct(dir, N) < 0) ? hitPoint + N * options.bias : hitPoint - N * options.bias;
         for (uint32_t i = 0; i < lights.size(); ++i) {
             vec3 lightDir = lights[i]->position - hitPoint;
@@ -64,11 +64,11 @@ vec3 castRay (const vec3 &orig, const vec3 &dir, const std::vector<std::unique_p
             // is the point shadowed, and is there anything closer to the light, that is the question/
             bool shadowed = trace(shadowPointOrigin, lightDir, objects, tNearShadow, index, uv, &hitByShadow) &&
                             tNearShadow * tNearShadow < sqrdLightDst;
-            lightAmt += (1 - shadowed) * lights[i]->intensity * LdotN;
+            lightTnsty += (1 - shadowed) * lights[i]->intensity * LdotN;
             vec3 reflectionDirection = reflect(-lightDir, N);
             specularColor += powf(std::max(0.f, -scalarProduct(reflectionDirection, dir)), obj->specularExponent) * lights[i]->intensity;
         }
-        pixColor += lightAmt * obj->evalDiffuseColor(st) * obj->Kd + specularColor * obj->Ks;
+        pixColor += lightTnsty * obj->evalDiffuseColor(st) * obj->Kd + specularColor * obj->Ks;
 
         switch (obj->materialType) {
             case GLASS: {

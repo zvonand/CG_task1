@@ -48,7 +48,7 @@ vec3 reflect(const vec3 &I, const vec3 &N);
 
 vec3 refract(const vec3 &I, const vec3 &N, const float &ior);
 
-Options setOptions(std::string filename, uint32_t width = 1024, uint32_t height = 780);
+Options setOptions(std::string filename, uint32_t width = 1280, uint32_t height = 720);
 
 bool rayTriangleIntersect(
         const vec3 &v0, const vec3 &v1, const vec3 &v2,

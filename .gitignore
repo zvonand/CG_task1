@@ -13,4 +13,4 @@ _deps
 *.swp
 *~
 rt*
-cmake-build-debug
+*build*/

@@ -5,6 +5,7 @@
 #include "misc.h"
 #include <cmath>
 #include <utility>
+#include <functional>
 
 //TODO: maybe migrate to doubles
 
@@ -79,9 +80,9 @@ Options setOptions(std::string filename, uint32_t width, uint32_t height) {
     Options options;
     options.width = width*2;    //x2 for antialiasing
     options.height = height*2;
-    options.viewField = 70;
+    options.viewField = 60;
     options.backColor = vec3(0.3, 0.1, 0.1);
-    options.maxDepth = 6;  //recursion
+    options.maxDepth = 5;  //recursion
     options.bias = 0.001;  //slight, small value
     options.filename = std::move(filename);
     return options;
@@ -116,18 +117,21 @@ void applyFresnel(const vec3 &I, const vec3 &N, const float &ior, float &kr) {
     float cosi = clamp(-1, 1, scalarProduct(I, N));
     float etai = 1, etat = ior;
     if (cosi > 0) {  std::swap(etai, etat); }
-    // sini computation with Snell's law
+    // sini computation mit Snell's law
     float sint = etai / etat * sqrtf(std::max(0.f, 1 - cosi * cosi));
-    if (sint >= 1) {
-        kr = 1;
-    }
-    else {
-        float cost = sqrtf(std::max(0.f, 1 - sint * sint));
-        cosi = fabsf(cosi);
-        float Rs = ((etat * cosi) - (etai * cost)) / ((etat * cosi) + (etai * cost));
-        float Rp = ((etai * cosi) - (etat * cost)) / ((etai * cosi) + (etat * cost));
-        kr = (Rs * Rs + Rp * Rp) / 2;
-    }
+
+    kr = [&] {
+        if (sint >= 1) {
+            return (float)1;
+        } else {
+            float cost = sqrtf(std::max(0.f, 1 - sint * sint));
+            cosi = fabsf(cosi);
+            float Rs = ((etat * cosi) - (etai * cost)) / ((etat * cosi) + (etai * cost));
+            float Rp = ((etai * cosi) - (etat * cost)) / ((etai * cosi) + (etat * cost));
+            return (Rs * Rs + Rp * Rp) / 2;
+        }
+    }();
+
     //Due to energy conservation law, the formula is as given:
     // kt = 1 - kr;
 }

@@ -19,5 +19,5 @@ Checkboard::Checkboard(const vec3 *verts)
 vec3 Checkboard::evalDiffuseColor(const Vec2 &st) const {
     float scale = 25;
     float pattern = (fmodf(st.x * scale, 1) > 0.5) ^ (fmodf(st.y * scale, 1) > 0.5);
-    return mix(vec3(0.1, 0.1, 0.1), vec3(0.92, 0.9, 0.9), pattern);
+    return mix(vec3(0.05, 0.05, 0.05), vec3(0.92, 0.9, 0.9), pattern);
 }
